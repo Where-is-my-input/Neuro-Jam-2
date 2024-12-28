@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://536lgdoqpntb"]
+
+[ext_resource type="Texture2D" uid="uid://dp0syli0cy6mh" path="res://assets/img/wimiProductions.png" id="1_tlq8b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1j6g"]
+size = Vector2(32, 32)
+
+[node name="resource" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_tlq8b")
+
+[node name="Area2D" type="Area2D" parent="." groups=["resource"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_h1j6g")
