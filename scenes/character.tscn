@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bh747vcllwbuh"]
+[gd_scene load_steps=6 format=3 uid="uid://bh747vcllwbuh"]
 
 [ext_resource type="Texture2D" uid="uid://cc7ka8td6saon" path="res://icon.svg" id="1_68gwn"]
 [ext_resource type="Script" path="res://scenes/character.gd" id="1_nn2ef"]
@@ -8,7 +8,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4c5qp"]
 size = Vector2(128, 128)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhkpp"]
+size = Vector2(32, 32)
+
 [node name="character" type="CharacterBody2D"]
+collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_nn2ef")
 
@@ -25,4 +29,18 @@ debug_color = Color(6.73831e-07, 0.646143, 0.244091, 0.42)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection"]
 shape = SubResource("RectangleShape2D_4c5qp")
 
+[node name="retreat" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="retreat"]
+shape = SubResource("RectangleShape2D_nhkpp")
+debug_color = Color(0.624148, 0.350943, 1, 0.42)
+
+[node name="nav" type="NavigationAgent2D" parent="."]
+
+[node name="tmrRetreat" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="area_entered" from="detection" to="." method="_on_detection_area_entered"]
+[connection signal="area_entered" from="retreat" to="." method="_on_retreat_area_entered"]
+[connection signal="area_exited" from="retreat" to="." method="_on_retreat_area_exited"]
+[connection signal="timeout" from="tmrRetreat" to="." method="_on_tmr_retreat_timeout"]
