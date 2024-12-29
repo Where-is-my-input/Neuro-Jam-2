@@ -63,7 +63,6 @@ func autoTile():
 				tile_map_layer_3.set_cell(Vector2i(cx,cy), 0, Vector2i(1,0))
 				#updateArrayFloor.append(Vector2i(cx,cy))
 				if noise > -0.7 && noise < -0.65:
-					print(noise)
 					Global.spawnBase.emit(Vector2(cx, cy))
 				elif noise > -0.5 && noise < -0.4:
 					Global.spawnResource.emit(Vector2(cx, cy))

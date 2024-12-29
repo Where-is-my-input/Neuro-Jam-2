@@ -1,6 +1,9 @@
 extends CharacterBody2D
 
 const SPEED = 300.0
+@onready var spr: AnimatedSprite2D = $spr
+@onready var lbl_teamid: Label = $lblTeamid
+@onready var audio_hit: AudioStreamPlayer2D = $audioHit
 
 var resource:Area2D = null
 var enemy:CharacterBody2D = null
@@ -105,7 +108,12 @@ func _on_tmr_attack_timeout() -> void:
 		tmr_attack.start(1)
 
 func getHit(d = 1):
+	audio_hit.play()
 	hp.value -= d
 	if hp.value <= 0:
 		get_parent().get_parent().supplyFreed()
 		queue_free()
+
+func setColor(color:Color):
+	spr.modulate = color
+	lbl_teamid.text = str(get_parent().get_parent().teamId)

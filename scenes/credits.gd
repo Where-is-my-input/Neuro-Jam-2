@@ -1,9 +1,6 @@
-extends Node
-
-signal spawnResource
-signal spawnBase
-signal spawnSpikes
+extends Control
+@onready var timer: Timer = $Timer
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("menu"):
+	if timer.is_stopped():
 		get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")

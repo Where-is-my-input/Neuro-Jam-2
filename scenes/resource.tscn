@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://536lgdoqpntb"]
 
 [ext_resource type="Script" path="res://scenes/resource.gd" id="1_mtuvg"]
-[ext_resource type="Texture2D" uid="uid://dp0syli0cy6mh" path="res://assets/img/wimiProductions.png" id="1_tlq8b"]
+[ext_resource type="Texture2D" uid="uid://rkw1j81s7wb4" path="res://assets/img/ore.png" id="2_1xh37"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h1j6g"]
 size = Vector2(32, 32)
@@ -10,8 +10,8 @@ size = Vector2(32, 32)
 script = ExtResource("1_mtuvg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_tlq8b")
+scale = Vector2(0.0474777, 0.0474777)
+texture = ExtResource("2_1xh37")
 
 [node name="Area2D" type="Area2D" parent="." groups=["resource"]]
 

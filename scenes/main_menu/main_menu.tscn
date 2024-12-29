@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs87sly5qy386"]
+
+[ext_resource type="Script" path="res://scenes/main_menu/main_menu.gd" id="1_8giav"]
+[ext_resource type="PackedScene" uid="uid://bt3csm376puwo" path="res://main.tscn" id="2_wimy3"]
+[ext_resource type="PackedScene" uid="uid://du3aymv8gigsc" path="res://scenes/credits.tscn" id="3_imy7h"]
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8giav")
+play = ExtResource("2_wimy3")
+credits = ExtResource("3_imy7h")
+
+[node name="vBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -136.0
+offset_right = 70.0
+grow_vertical = 0
+
+[node name="play" type="Button" parent="vBox"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../quit")
+text = "Play"
+
+[node name="options" type="Button" parent="vBox"]
+visible = false
+layout_mode = 2
+text = "Options"
+
+[node name="credits" type="Button" parent="vBox"]
+layout_mode = 2
+text = "Credits"
+
+[node name="quit" type="Button" parent="vBox"]
+visible = false
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../play")
+text = "Quit"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.5
+offset_top = -11.5
+offset_right = 76.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "Neuro World's Start"
+
+[connection signal="pressed" from="vBox/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="vBox/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="vBox/credits" to="." method="_on_credits_pressed"]

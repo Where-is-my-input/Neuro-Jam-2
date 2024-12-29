@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cuaik8is0fhsh"]
+[gd_scene load_steps=4 format=3 uid="uid://cuaik8is0fhsh"]
 
 [ext_resource type="Script" path="res://scenes/cursor.gd" id="1_w7ipu"]
 [ext_resource type="PackedScene" uid="uid://bghrjftk5dsx0" path="res://scenes/vc/virtual_controller.tscn" id="2_xo5ob"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_svosw"]
+size = Vector2(32, 32)
 
 [node name="cursor" type="Node2D"]
 script = ExtResource("1_w7ipu")
@@ -14,3 +17,16 @@ color = Color(0, 1, 1, 0.388235)
 [node name="virtual_controller" parent="." instance=ExtResource("2_xo5ob")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="tmrDelay" type="Timer" parent="."]
+one_shot = true
+
+[node name="areaDelete" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areaDelete"]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_svosw")
+disabled = true
+debug_color = Color(0.980398, 0, 0.38001, 0.42)
+
+[connection signal="area_entered" from="areaDelete" to="." method="_on_area_delete_area_entered"]
