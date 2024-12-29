@@ -24,4 +24,16 @@ debug_color = Color(0, 0.639367, 0.365676, 0.42)
 [node name="tmrSpawn" type="Timer" parent="."]
 one_shot = true
 
+[node name="lblResources" type="Label" parent="."]
+offset_left = -64.0
+offset_top = -88.0
+offset_right = -24.0
+offset_bottom = -65.0
+
+[node name="lblSupply" type="Label" parent="."]
+offset_left = 24.0
+offset_top = -88.0
+offset_right = 64.0
+offset_bottom = -65.0
+
 [connection signal="timeout" from="tmrSpawn" to="." method="_on_tmr_spawn_timeout"]

@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://cudkbdg6ofb4m" path="res://assets/img/tileset.png" id="1_vpkab"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_17rm2"]
-vertices = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_kjdg0"]
+vertices = PackedVector2Array(32, -1.0625, 0, 32, -32, -0.351563, -0.710938, -32)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-0.707108, -32, 32, -1.06066, 0, 32, -32, -0.353554)])
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_47871"]
@@ -14,7 +14,7 @@ texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 1:0/0 = 0
-1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_17rm2")
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_kjdg0")
 2:0/0 = 0
 3:0/0 = 0
 4:0/0 = 0
