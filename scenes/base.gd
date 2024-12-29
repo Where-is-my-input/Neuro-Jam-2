@@ -72,3 +72,5 @@ func retrieveResources(v = 1):
 func supplyFreed():
 	tmr_spawn.start(spawnTimer)
 	updateSupply()
+	if villagers.get_child_count() <= 0:
+		queue_free()

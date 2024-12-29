@@ -38,7 +38,6 @@ debug_color = Color(0.624148, 0.350943, 1, 0.42)
 
 [node name="nav" type="NavigationAgent2D" parent="."]
 target_desired_distance = 32.0
-debug_enabled = true
 
 [node name="tmrRetreat" type="Timer" parent="."]
 one_shot = true
