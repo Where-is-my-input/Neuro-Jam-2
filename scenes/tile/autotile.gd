@@ -29,7 +29,7 @@ func clear():
 
 func generate():
 	clear()
-	size = Vector2(randi_range(5,50), randi_range(5,50))
+	size = Vector2(randi_range(5,50), randi_range(5,50)) if Global.size == Vector2(0, 0) else Global.size
 	#size = Vector2(5,5)
 	autoTile()
 	tile_set.setBorder(size)
@@ -40,7 +40,7 @@ func autoTile():
 	var updateArray:Array
 	var updateArrayFloor:Array
 	#var seed = str(Global.floor) + Global.seed
-	simplexNoise.seed = seed.hash()
+	simplexNoise.seed = seed.hash() if Global.seed == "" else Global.seed.hash()
 	simplexNoise.fractal_octaves = noiseOctaves
 	simplexNoise.fractal_lacunarity = noiseLacunarity
 	

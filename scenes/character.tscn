@@ -1,23 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://bh747vcllwbuh"]
+[gd_scene load_steps=22 format=3 uid="uid://bh747vcllwbuh"]
 
 [ext_resource type="Script" path="res://scenes/character.gd" id="1_nn2ef"]
+[ext_resource type="Shader" path="res://scenes/character.gdshader" id="1_onj0t"]
 [ext_resource type="Texture2D" uid="uid://c77r2muqvrg34" path="res://assets/img/evil_pirate_rpg_sheet.png" id="2_cbguf"]
 [ext_resource type="AudioStream" uid="uid://4y7gq3rb0n2y" path="res://assets/sfx/hit.wav" id="3_l0xf2"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5f3no"]
-atlas = ExtResource("2_cbguf")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_x3p7x"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5f3no")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qcwoi"]
+resource_local_to_scene = true
+shader = ExtResource("1_onj0t")
+shader_parameter/color1 = Color(0.207843, 0.2, 0.184314, 1)
+shader_parameter/color2 = Color(0.733333, 0, 0.00784314, 1)
+shader_parameter/color3 = Color(0.807843, 0.678431, 0.603922, 1)
+shader_parameter/newColor1 = Color(0.207843, 0.2, 0.184314, 1)
+shader_parameter/newColor2 = Color(0.733333, 0, 0.00784314, 1)
+shader_parameter/newColor3 = Color(0.807843, 0.678431, 0.603922, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yncab"]
 
@@ -27,13 +23,130 @@ size = Vector2(128, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nhkpp"]
 size = Vector2(32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pe20"]
+atlas = ExtResource("2_cbguf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiw7t"]
+atlas = ExtResource("2_cbguf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uk1yh"]
+atlas = ExtResource("2_cbguf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgo14"]
+atlas = ExtResource("2_cbguf")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1h8s"]
+atlas = ExtResource("2_cbguf")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cy15"]
+atlas = ExtResource("2_cbguf")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3c5xc"]
+atlas = ExtResource("2_cbguf")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsvmi"]
+atlas = ExtResource("2_cbguf")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5k4yt"]
+atlas = ExtResource("2_cbguf")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64443"]
+atlas = ExtResource("2_cbguf")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cb0so"]
+atlas = ExtResource("2_cbguf")
+region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpn8d"]
+atlas = ExtResource("2_cbguf")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x3p7x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pe20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiw7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uk1yh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiw7t")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgo14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1h8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1cy15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1h8s")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c5xc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsvmi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5k4yt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsvmi")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64443")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cb0so")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpn8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cb0so")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
 [node name="character" type="CharacterBody2D" groups=["villager"]]
+material = SubResource("ShaderMaterial_qcwoi")
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_nn2ef")
-
-[node name="spr" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_x3p7x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_yncab")
@@ -81,6 +194,14 @@ vertical_alignment = 1
 [node name="audioHit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_l0xf2")
 volume_db = -10.0
+
+[node name="spr" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+use_parent_material = true
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_x3p7x")
+animation = &"up"
+frame_progress = 0.425323
 
 [connection signal="area_entered" from="detection" to="." method="_on_detection_area_entered"]
 [connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]

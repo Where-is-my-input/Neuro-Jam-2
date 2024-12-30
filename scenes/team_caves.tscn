@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://berwalvygy7kv"]
+
+[ext_resource type="Script" path="res://scenes/team_caves.gd" id="1_eim2q"]
+
+[node name="teamCaves" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_eim2q")
+
+[node name="team" type="Label" parent="."]
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+
+[node name="caves" type="Label" parent="."]
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1

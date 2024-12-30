@@ -14,6 +14,7 @@ scale = Vector2(0.259109, 0.259109)
 texture = ExtResource("2_u41p7")
 
 [node name="Area2D" type="Area2D" parent="." groups=["base"]]
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_vqnbn")
@@ -44,4 +45,6 @@ offset_bottom = 87.0
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="tmrSpawn" to="." method="_on_tmr_spawn_timeout"]

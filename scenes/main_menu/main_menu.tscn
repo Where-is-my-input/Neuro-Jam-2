@@ -44,6 +44,31 @@ layout_mode = 2
 focus_neighbor_bottom = NodePath("../play")
 text = "Quit"
 
+[node name="HBoxContainer" type="HBoxContainer" parent="vBox"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="vBox/HBoxContainer"]
+layout_mode = 2
+text = "X"
+
+[node name="lineX" type="LineEdit" parent="vBox/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="vBox/HBoxContainer"]
+layout_mode = 2
+text = "Y"
+
+[node name="lineY" type="LineEdit" parent="vBox/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="vBox/HBoxContainer"]
+layout_mode = 2
+text = "Seed"
+
+[node name="seed" type="LineEdit" parent="vBox/HBoxContainer"]
+layout_mode = 2
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -63,3 +88,6 @@ text = "Neuro World's Start"
 [connection signal="pressed" from="vBox/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="vBox/options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="vBox/credits" to="." method="_on_credits_pressed"]
+[connection signal="text_changed" from="vBox/HBoxContainer/lineX" to="." method="_on_line_x_text_changed"]
+[connection signal="text_changed" from="vBox/HBoxContainer/lineY" to="." method="_on_line_y_text_changed"]
+[connection signal="text_changed" from="vBox/HBoxContainer/seed" to="." method="_on_seed_text_changed"]

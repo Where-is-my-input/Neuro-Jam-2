@@ -1,7 +1,9 @@
 extends Node2D
+@onready var spr: Sprite2D = $Sprite2D
 
 @export var maxSupply:int = 5
-@export var spawnTimer:float = 5.0
+@export var maxSpawnTimer:float = 5.0
+@export var minSpawnTimer:float = 1.0
 @export var teamId:int = 0
 @onready var villagers: Node = $villagers
 @onready var tmr_spawn: Timer = $tmrSpawn
@@ -11,6 +13,7 @@ extends Node2D
 
 var teamColor:Color = Color.WHITE
 var resourcesCollected:int = 300
+var defeated:bool = false
 
 var exploreVectors:Array[Vector2] = [Vector2(1, 0), Vector2(0, 1), Vector2(-1, 0), Vector2(0, -1)]
 var resourceLocations:Array[Area2D] = []
@@ -27,11 +30,13 @@ func setTeam(id = 0):
 	lbl_team_id.text = str(id)
 	var colorMultiplier = 100
 	teamColor = Color(255 - teamId * colorMultiplier if teamId % 2 == 0 else 255, 255 - teamId * colorMultiplier if teamId % 3 == 0 else 255, 255 - teamId * colorMultiplier if teamId % 7 == 0 else 255) if teamId > 0 else Color.WHITE
-	print("team ", teamId, " - R: ", 255 - teamId * colorMultiplier if teamId % 2 == 0 else 255, "G: ", 255 - teamId * colorMultiplier if teamId % 3 == 0 else 255, "B: ", 255 - teamId * colorMultiplier if teamId % 7 == 0 else 255)
+	#print("team ", teamId, " - R: ", 255 - teamId * colorMultiplier if teamId % 2 == 0 else 255, "G: ", 255 - teamId * colorMultiplier if teamId % 3 == 0 else 255, "B: ", 255 - teamId * colorMultiplier if teamId % 7 == 0 else 255)
+	teamColor = Global.colors[teamId % Global.colors.size()]
+	spr.modulate = teamColor
 
 func startSpawnTimer():
 	if villagers.get_child_count() < maxSupply && resourcesCollected >= 100:
-		tmr_spawn.start(spawnTimer)
+		tmr_spawn.start(randf_range(minSpawnTimer, maxSpawnTimer))
 
 func _on_tmr_spawn_timeout() -> void:
 	if villagers.get_child_count() < maxSupply && resourcesCollected >= 100:
@@ -78,17 +83,36 @@ func retrieveResources(v = 1):
 		exploreRetreatTimer = 5.0
 	resourcesCollected += v
 	lbl_resources.text = str(resourcesCollected)
-	if villagers.get_child_count() < maxSupply && resourcesCollected >= 100 && tmr_spawn.is_stopped(): tmr_spawn.start(spawnTimer)
+	if villagers.get_child_count() < maxSupply && resourcesCollected >= 100 && tmr_spawn.is_stopped(): tmr_spawn.start(randf_range(minSpawnTimer, maxSpawnTimer))
 	getMoreSupply()
 
 func supplyFreed():
-	tmr_spawn.start(spawnTimer)
+	tmr_spawn.start(randf_range(minSpawnTimer, maxSpawnTimer))
 	updateSupply()
 	if villagers.get_child_count() <= 1:
-		queue_free()
+		tmr_spawn.stop()
+		defeated = true
 
 func getMoreSupply():
 	if resourcesCollected >= 1000 && villagers.get_child_count() >= maxSupply:
 		resourcesCollected -= 1000
 		maxSupply += 3
 		updateSupply()
+
+func _on_area_2d_body_entered(body) -> void:
+	if body.is_in_group("villager") && defeated:
+		get_parent().changeCaveCount(teamId, -1)
+		defeated = false
+		teamId = body.get_parent().get_parent().teamId
+		lbl_team_id.text = str(teamId)
+		teamColor = body.get_parent().get_parent().teamColor
+		spr.modulate = teamColor
+		resourcesCollected += 100
+		lbl_resources.text = str(resourcesCollected)
+		startSpawnTimer()
+		get_parent().changeCaveCount(teamId, 1)
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("resource"):
+		area.get_parent().queue_free()

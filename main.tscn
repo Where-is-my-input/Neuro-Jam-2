@@ -10,3 +10,21 @@ script = ExtResource("1_c2hm3")
 [node name="cursor" parent="." instance=ExtResource("4_fiyeo")]
 
 [node name="autotile" parent="." instance=ExtResource("4_80weg")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="teamCaveCounter" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/teamCaveCounter"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/teamCaveCounter/HBoxContainer"]
+layout_mode = 2
+text = "Team"
+
+[node name="Label2" type="Label" parent="CanvasLayer/teamCaveCounter/HBoxContainer"]
+layout_mode = 2
+text = "Caves"

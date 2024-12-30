@@ -51,6 +51,7 @@ func _physics_process(delta: float) -> void:
 			#direction = global_position.direction_to(targetPosition) if !nav.is_target_reached() else Vector2(0,0)
 	if direction && !attacking: # && (resourceCollected < maxResource || resource == null)
 		velocity = direction * SPEED
+		setAnimation(direction)
 	else:
 		velocity = Vector2(move_toward(velocity.x, 0, SPEED), move_toward(velocity.y, 0, SPEED))
 		if resource && collecting && !attacking:
@@ -115,5 +116,26 @@ func getHit(d = 1):
 		queue_free()
 
 func setColor(color:Color):
-	spr.modulate = color
+	var index = 0
+	#spr.modulate = color
+	var materialArray = ["shader_parameter/newColor1","shader_parameter/newColor2","shader_parameter/newColor3"]
+	for m in materialArray:
+		#var r = paletteArray[index].r
+		#var g = paletteArray[index].g
+		#var b = paletteArray[index].b
+		index += 1
+		material.set(m, color)
+		if get_parent().get_parent().teamId < 10 && index > 0 || get_parent().get_parent().teamId < 20 && index > 1:
+			break
 	lbl_teamid.text = str(get_parent().get_parent().teamId)
+
+func setAnimation(dir):
+	if dir.x > 0: spr.play("right")
+	if dir.x < 0: spr.play("left")
+	if dir.y > 0: spr.play("down")
+	if dir.y < 0: spr.play("up")
+	#match dir.y:
+		#1:
+			#spr.play("down")
+		#-1:
+			#spr.play("up")
